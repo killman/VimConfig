@@ -1,0 +1,101 @@
+snippet sel
+	-- -----------------------------------------------
+	SELECT ${1:campo1}, 
+		   ${2:campo2},
+		   ${3:campo3}
+	  FROM ${4:tabla}
+	 WHERE ${5:condicion}
+	-- -----------------------------------------------
+snippet sele
+	-- -----------------------------------------------
+	SELECT ${1:campo1}, 
+		   ${2:campo2},
+		   ${3:campo3}
+	  FROM ${4:tabla1} AS ${5:t1} 
+	  JOIN ${6:tabla2} AS ${7:t2} ON $5.${8:id} = $7.${9:$8}
+	  
+	 WHERE ${10:condicion}
+	-- -----------------------------------------------
+snippet selec
+	-- -----------------------------------------------
+	SELECT ${1:campo1}, 
+		   ${2:campo2},
+		   ${3:campo3}
+	  FROM ${4:tabla1} AS ${5:t1} 
+	  JOIN ${6:tabla2} AS ${7:t2} ON $5.${8:id} = $7.${9:$8}
+	  
+	 WHERE ${10:condicion}
+	 GROUP BY ${11:campo1}
+	 ORDER BY ${12:campo1} DESC ${13}
+	-- -----------------------------------------------
+snippet gr
+	GROUP BY ${1:campo}
+	${2}
+snippet hav 
+	HAVING (${1:condicion})
+	${2}
+snippet ord
+	ORDER BY ${1:campo1}
+	${2}
+	-- -----------------------------------------------
+snippet ins
+	-- -----------------------------------------------
+	INSERT INTO ${1:tabla} 
+	VALUES (${2:valor1},${3:valor2},${4:valor3}) 
+	${5}
+	-- -----------------------------------------------
+snippet upd
+	-- -----------------------------------------------
+	UPDATE ${1:table}
+	SET ${2:campo1} = ${3:valor1}, 	
+		${4:campo2} = ${5:valor2},
+		${6:campo3} = ${7:valor4}
+	WHERE ${8:condicion}
+	-- -----------------------------------------------
+snippet del
+	-- -----------------------------------------------
+	DELETE ${1:table}
+	WHERE  ${2:condicion}
+	-- -----------------------------------------------
+snippet ctab
+	-- --------------------------------------------------------------------- `strftime("%d/%m/%Y")`
+	CREATE TABLE ${1:nombre_tabla}
+		 ( 
+			${2:id}           ${3:INT} 	       		${4:NOT NULL}, 
+			${5:campo2}       ${6:NVARCHAR}(${7:50})     		${8:NULL}, 
+			${9:campo3}       ${10:NVARCHAR}(${11:50})     		${12:NULL}, 
+			${13:campo4}       ${14:NVARCHAR}(${15:50}) 	    	${16:NULL}
+			CONSTRAINT PK_$1 PRIMARY KEY CLUSTERED ($2 ASC) ${14}
+			ON [PRIMARY] 
+		 )
+	GO
+	-- -------------------------------------------------------------------------------
+
+snippet cpro
+	-- --------------------------------------------------------------------- `strftime("%d/%m/%Y")`
+	CREATE PROCEDURE [dbo].[SP_${1:miprocedimiento}]
+	-- (@${2:p_id} 			${3:INT},
+	-- @${4:p_nom} 			${5:NVARCHAR(50)},
+	-- @${6:p_ape} 			${7:NVARCHAR(50))}
+	AS
+	BEGIN
+		${8:-- TRANSACCIONES}
+	END
+	-- -------------------------------------------------------------------------------
+
+snippet exec
+	-- -------------------------------------------------------------------------------
+	--USE [${1:BasedeDatos}]
+	GO
+	DECLARE	@return_value int
+	-- Parametros requeridos
+	EXEC	@return_value = [dbo].[${2:SP_storedname}]
+			${3:-- @descripcion} = N'${4:xxxxxxxxxxx}',
+			${5:-- @user_id} 	= ${6:22},
+			${7:-- @user_type} 	= ${8:13}
+
+	SELECT	'Return Value' = @return_value
+	GO
+	-- -------------------------------------------------------------------------------
+
+
