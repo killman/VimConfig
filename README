@@ -1,6 +1,6 @@
 
 ~$ git clone https://github.com/Killman/VimConfig.git
 
-~$ cd VimConfig/* ~/; mv vim .vim
+~$ cd VimConfig/* ~/; mv vim .vim; mv vimrc .vimrc
 
 
